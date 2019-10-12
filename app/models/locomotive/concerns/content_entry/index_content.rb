@@ -42,15 +42,19 @@ module Locomotive
 
               if name == "body"
                 html = Nokogiri.HTML(value)
-                html.css("#table-of-contents").first.remove
-
-                html.css(".readmore-block").each do |i|
-                  i.remove
+                if !html.css("#table-of-contents").size != 0
+                  html.css("#table-of-contents").first.remove
                 end
-                html.css("ul").each do |i|
-                  i.remove
+                if !html.css(".readmore-block").size != 0
+                  html.css(".readmore-block").each do |i|
+                    i.remove
+                  end
                 end
-
+                if !html.css("ul").size != 0
+                  html.css("ul").each do |i|
+                    i.remove
+                  end
+                end
                 text_only = sanitize_search_content(html.inner_html)
                 text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" ")
               else
