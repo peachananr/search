@@ -37,11 +37,8 @@ module Locomotive
         def blog_post_to_index
           require 'nokogiri'
           self.custom_fields_basic_attributes.map do |(name, value)|
-            if name == "title" or name == "subtitle" or name == "tags" or name == "body"
+            if name == "title" or name == "subtitle" or name == "body"
               _name = name.gsub(/_id$/, '').gsub(/_url$/, '')
-              if name == "tags"
-                value = value.join(",")
-              end
 
               if name == "body"
                 html = Nokogiri.HTML(value)
@@ -55,7 +52,7 @@ module Locomotive
                 end
 
                 text_only = sanitize_search_content(html.inner_html)
-                text_only.downcase.chomp.gsub(/[^0-9A-Za-z]/, '').split(" ").uniq.join(" ")
+                text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, '').split(" ").uniq.join(" ")
               else
                 sanitize_search_content(value)
               end
