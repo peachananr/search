@@ -54,7 +54,8 @@ module Locomotive
                   i.remove
                 end
 
-                sanitize_search_content(html.inner_html)
+                text_only = sanitize_search_content(html.inner_html)
+                text_only.chomp.split(" ").uniq.join(" ")
               else
                 sanitize_search_content(value)
               end
