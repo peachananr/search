@@ -15,7 +15,7 @@ gem 'coffee-rails',           '~> 4.2'
 gem 'turbolinks',             '~> 5'
 gem 'bootsnap',               '>= 1.1.0', require: false
 gem 'sidekiq',                '~> 5.1.3'
-gem 'nokogiri'
+gem 'nokogiri',               '~> 1.8.5'
 
 gem 'custom_fields', path: '../custom_fields' # for Developers
 gem 'locomotivecms', path: '../engine'
