@@ -42,15 +42,15 @@ module Locomotive
 
               if name == "body"
                 html = Nokogiri.HTML(value)
-                if !html.css("#table-of-contents").size != 0
+                if html.css("#table-of-contents").size != 0
                   html.css("#table-of-contents").first.remove
                 end
-                if !html.css(".readmore-block").size != 0
+                if html.css(".readmore-block").size != 0
                   html.css(".readmore-block").each do |i|
                     i.remove
                   end
                 end
-                if !html.css("ul").size != 0
+                if html.css("ul").size != 0
                   html.css("ul").each do |i|
                     i.remove
                   end
