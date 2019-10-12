@@ -55,7 +55,7 @@ module Locomotive
                 end
 
                 text_only = sanitize_search_content(html.inner_html)
-                text_only.chomp.split(" ").uniq.join(" ")
+                text_only.downcase.chomp.gsub(/[^0-9A-Za-z]/, '').split(" ").uniq.join(" ")
               else
                 sanitize_search_content(value)
               end
