@@ -45,7 +45,6 @@ module Locomotive
 
               if name == "body"
                 html = Nokogiri.HTML(value)
-                puts "yyyy #{html.css("body").inner_html}"
                 html.css("#table-of-contents").first.remove
 
                 html.css(".readmore-block").each do |i|
@@ -54,7 +53,6 @@ module Locomotive
                 html.css("ul").each do |i|
                   i.remove
                 end
-                puts "zzzz #{html.css("body").inner_html}"
 
                 sanitize_search_content(html.inner_html)
               else
