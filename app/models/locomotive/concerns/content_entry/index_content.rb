@@ -33,6 +33,39 @@ module Locomotive
           data
         end
 
+        ## CUSTOM Index Job for BucketListly Blog Only
+        def blog_post_to_index
+          require 'nokogiri'
+          self.custom_fields_basic_attributes.map do |(name, value)|
+            if name == "title" or name == "subtitle" or name == "tags" or name == "body"
+              _name = name.gsub(/_id$/, '').gsub(/_url$/, '')
+              if name == "tags"
+                value = value.join(",")
+              end
+
+              if name == "body"
+                html = Nokogiri.HTML(value)
+                puts "yyyy #{html.css("body").inner_html}"
+                html.css("#table-of-contents").first.remove
+
+                html.css(".readmore-block").each do |i|
+                  i.remove
+                end
+                html.css("ul").each do |i|
+                  i.remove
+                end
+                puts "zzzz #{html.css("body").inner_html}"
+
+                sanitize_search_content(html.inner_html)
+              else
+                sanitize_search_content(value)
+              end
+            else
+              next
+            end
+          end.compact.join(' ').strip
+        end
+
         private
 
         def index_content
@@ -67,4 +100,3 @@ module Locomotive
     end
   end
 end
-
