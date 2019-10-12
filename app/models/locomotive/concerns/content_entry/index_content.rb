@@ -38,7 +38,7 @@ module Locomotive
           require 'nokogiri'
           self.custom_fields_basic_attributes.map do |(name, value)|
             if name == "title" or name == "subtitle" or name == "body"
-              _name = name.gsub(/_id$/, '').gsub(/_url$/, '')
+              _name = name.gsub(/_id$/, '').gsub(/_url$/, ' ')
 
               if name == "body"
                 html = Nokogiri.HTML(value)
@@ -52,7 +52,7 @@ module Locomotive
                 end
 
                 text_only = sanitize_search_content(html.inner_html)
-                text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, '').split(" ").uniq.join(" ")
+                text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, '').split(" ").uniq.select{|w| w.length >= 3}.join(" ")
               else
                 sanitize_search_content(value)
               end
