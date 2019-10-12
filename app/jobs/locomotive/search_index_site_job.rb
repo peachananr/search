@@ -7,7 +7,7 @@ module Locomotive
       # first remove all the indices for this site
       search_backend(site, nil)&.clear_all_indices
       ## CUSTOM Index Job for BucketListly Blog Only
-      if site_id == "5adf778b6eabcc00190b75b1"
+      if site_id == "5adf778b6eabcc00190b75b1" #dev"5ae3ea9872822817a85b0d64"
         # index only content type posts
         content_type = "5adf77af6eabcc00190b75b6"
         site.each_locale do |locale|
