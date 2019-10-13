@@ -38,9 +38,8 @@ module Locomotive
         object_id:  entry._id.to_s,
         title:      "#{entry.title} #{entry.subtitle}",
         content:    entry.blog_post_to_index,
-        thumbnail:    entry.header_img_thumb.url,
-        description:   entry.desc_to_index,
-        visible:    entry.visible?
+        visible:    entry.visible?,
+        data:       entry.blog_post_data_to_index
       )
     end
   end

@@ -61,12 +61,22 @@ module Locomotive
           end.compact.join(' ').strip
         end
 
-        def desc_to_index
+        def blog_post_data_to_index
           if self.meta_description.nil? or self.meta_description.empty?
-            ActionController::Base.helpers.truncate(sanitize_search_content(self.body), length: 50)
+            desc = ActionController::Base.helpers.truncate(sanitize_search_content(self.body), length: 50)
           else
-            self.meta_description
+            desc = self.meta_description
           end
+
+          data = {
+            '_content_type' => self.content_type.slug,
+            '_slug'         => self._slug,
+            '_label'        => self._label,
+            'description'   => desc,
+            'thumbnail'     => self.header_img_thumb.url
+          }
+
+          data
         end
 
         private
