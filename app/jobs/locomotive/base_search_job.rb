@@ -32,11 +32,14 @@ module Locomotive
     end
     ## CUSTOM Index Job for BucketListly Blog Only
     def index_blog_post(site, entry, locale)
+
       search_backend(entry.site, locale)&.save_object(
         type:       entry.content_type.slug,
         object_id:  entry._id.to_s,
-        title:      entry._label,
+        title:      "#{entry.title} #{entry.subtitle}",
         content:    entry.blog_post_to_index,
+        thumbnail:    entry.header_img_thumb.url,
+        description:   entry.desc_to_index,
         visible:    entry.visible?
       )
     end

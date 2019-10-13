@@ -37,33 +37,34 @@ module Locomotive
         def blog_post_to_index
           require 'nokogiri'
           self.custom_fields_basic_attributes.map do |(name, value)|
-            if name == "title" or name == "subtitle" or name == "body"
-              _name = name.gsub(/_id$/, '').gsub(/_url$/, ' ')
-
-              if name == "body"
-                html = Nokogiri.HTML(value)
-                if html.css("#table-of-contents").size != 0
-                  html.css("#table-of-contents").first.remove
-                end
-                if html.css(".readmore-block").size != 0
-                  html.css(".readmore-block").each do |i|
-                    i.remove
-                  end
-                end
-                if html.css("ul").size != 0
-                  html.css("ul").each do |i|
-                    i.remove
-                  end
-                end
-                text_only = sanitize_search_content(html.inner_html)
-                text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" ")
-              else
-                sanitize_search_content(value)
+            if name == "body"
+              html = Nokogiri.HTML(value)
+              if html.css("#table-of-contents").size != 0
+                html.css("#table-of-contents").first.remove
               end
+              if html.css(".readmore-block").size != 0
+                html.css(".readmore-block").each do |i|
+                  i.remove
+                end
+              end
+              if html.css("ul").size != 0
+                html.css("ul").each do |i|
+                  i.remove
+                end
+
+              text_only = sanitize_search_content(html.inner_html)
+              text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" ")
             else
               next
             end
           end.compact.join(' ').strip
+        end
+        def desc_to_index
+          if self.meta_description.nil? or entry.meta_description.empty?
+            ActionController::Base.helpers.truncate(sanitize_search_content(self.body), length: 50)
+          else
+            self.meta_description
+          end
         end
 
         private
