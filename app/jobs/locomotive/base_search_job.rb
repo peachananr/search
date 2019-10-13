@@ -46,7 +46,7 @@ module Locomotive
         search_backend(entry.site, locale)&.save_object(
           type:       entry.content_type.slug,
           object_id:  entry._id.to_s,
-          title:      "#{entry.title}",
+          title:      entry.title,
           content:    entry.blog_post_to_index,
           visible:    entry.visible?,
           data:       entry.video_data_to_index
@@ -56,7 +56,7 @@ module Locomotive
         search_backend(entry.site, locale)&.save_object(
           type:       entry.content_type.slug,
           object_id:  entry._id.to_s,
-          title:      "#{entry.title} #{entry.subtitle}",
+          title:      entry.name,
           content:    entry.destinations_to_index,
           visible:    entry.visible?,
           data:       entry.destination_data_to_index
