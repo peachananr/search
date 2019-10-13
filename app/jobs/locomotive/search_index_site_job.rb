@@ -10,8 +10,9 @@ module Locomotive
       #if site_id == "5adf778b6eabcc00190b75b1" #dev"5ae3ea9872822817a85b0d64"
       site.content_types.each do |content_type|
         if content_type == "5adf77af6eabcc00190b75b6" or content_type == "5ae2fcb93e788b000b95ee64" or content_type == "5afe6305a6c15b186b7d1943"
-        content_type.entries.visible.each do |entry|
-          index_important_post(site, entry, locale)
+          content_type.entries.visible.each do |entry|
+            index_important_post(site, entry, locale)
+          end
         end
       end
 
