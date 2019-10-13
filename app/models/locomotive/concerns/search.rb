@@ -21,6 +21,10 @@ module Locomotive
         ::ActionController::Base.helpers.strip_tags(text)
       end
 
+      def truncate_desc(text, limit)
+        ::ActionController::Base.helpers.truncate(text, length: limit)
+      end
+
     end
   end
 end

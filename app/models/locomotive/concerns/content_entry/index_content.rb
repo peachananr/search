@@ -63,7 +63,7 @@ module Locomotive
 
         def blog_post_data_to_index
           if self.meta_description.nil? or self.meta_description.empty?
-            desc = ActionController::Base.helpers.truncate(sanitize_search_content(self.body), length: 50)
+            desc = truncate_desc(sanitize_search_content(self.body), 50)
           else
             desc = self.meta_description
           end
