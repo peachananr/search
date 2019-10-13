@@ -8,13 +8,13 @@ module Locomotive
       search_backend(site, nil)&.clear_all_indices
       ## CUSTOM Index Job for BucketListly Blog Only
       #if site_id == "5adf778b6eabcc00190b75b1" #dev"5ae3ea9872822817a85b0d64"
-        # index only content type posts
-        content_type = "5adf77af6eabcc00190b75b6"
-        site.each_locale do |locale|
-          site.content_types.find(content_type).entries.visible.each do |entry|
-            index_blog_post(site, entry, locale)
-          end
+      site.content_types.each do |content_type|
+        if content_type == "5adf77af6eabcc00190b75b6" or content_type == "5ae2fcb93e788b000b95ee64" or content_type == "5afe6305a6c15b186b7d1943"
+        content_type.entries.visible.each do |entry|
+          index_important_post(site, entry, locale)
         end
+      end
+
       #else
       #  # index the content in each locale
       #  site.each_locale do |locale|

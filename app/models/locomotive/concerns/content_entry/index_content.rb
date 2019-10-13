@@ -61,6 +61,16 @@ module Locomotive
           end.compact.join(' ').strip
         end
 
+        def destinations_to_index
+          self.custom_fields_basic_attributes.map do |(name, value)|
+            if name == "desc"
+              sanitize_search_content(value)
+            else
+              next
+            end
+          end.compact.join(' ').strip
+        end
+
         def blog_post_data_to_index
           if self.meta_description.nil? or self.meta_description.empty?
             desc = truncate_desc(sanitize_search_content(self.body), 50)
@@ -72,8 +82,34 @@ module Locomotive
             '_content_type' => self.content_type.slug,
             '_slug'         => self._slug,
             '_label'        => self._label,
+            'subtitle'        => self.subtitle,
             'description'   => desc,
             'thumbnail'     => self.header_img_thumb.url
+          }
+
+          data
+        end
+
+        def video_data_to_index
+          data = {
+            '_content_type' => self.content_type.slug,
+            '_slug'         => self._slug,
+            '_label'        => self._label,
+            'description'   => truncate_desc(sanitize_search_content(self.body), 50),
+            'thumbnail'     => self.cover_image_thumb.url
+          }
+
+          data
+        end
+
+        def destination_data_to_index
+
+          data = {
+            '_content_type' => self.content_type.slug,
+            '_slug'         => self._slug,
+            '_label'        => self._label,
+            'description'   => truncate_desc(sanitize_search_content(self.desc), 50),
+            'thumbnail'     => self.bg_image.url
           }
 
           data

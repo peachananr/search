@@ -22,7 +22,7 @@ module Locomotive
       end
 
       def truncate_desc(text, limit)
-        ::ActionController::Base.helpers.truncate(text, length: limit)
+        ::ActionController::Base.helpers.truncate_words(text, limit)
       end
 
     end
