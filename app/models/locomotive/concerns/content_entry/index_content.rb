@@ -73,7 +73,7 @@ module Locomotive
 
         def blog_post_data_to_index
           if self.meta_description.nil? or self.meta_description.empty?
-            desc = truncate_desc(sanitize_search_content(self.body), 50)
+            desc = truncate_desc(sanitize_search_content(self.body), 200)
           else
             desc = self.meta_description
           end
@@ -95,7 +95,7 @@ module Locomotive
             '_content_type' => self.content_type.slug,
             '_slug'         => self._slug,
             '_label'        => self._label,
-            'description'   => truncate_desc(sanitize_search_content(self.body), 50),
+            'description'   => truncate_desc(sanitize_search_content(self.body), 200),
             'thumbnail'     => self.cover_image_thumb.url
           }
 
@@ -108,7 +108,7 @@ module Locomotive
             '_content_type' => self.content_type.slug,
             '_slug'         => self._slug,
             '_label'        => self._label,
-            'description'   => truncate_desc(sanitize_search_content(self.desc), 50),
+            'description'   => truncate_desc(sanitize_search_content(self.desc), 200),
             'thumbnail'     => self.bg_image.url
           }
 
