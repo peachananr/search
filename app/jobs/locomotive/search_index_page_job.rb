@@ -3,9 +3,9 @@ module Locomotive
 
     def perform(page_id, locale)
       ::Mongoid::Fields::I18n.with_locale(locale) do
-        page = Locomotive::Page.find(page_id)
+        #page = Locomotive::Page.find(page_id)
 
-        index_page(page.site, page, locale)
+        #index_page(page.site, page, locale)
       end
     end
 
