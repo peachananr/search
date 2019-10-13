@@ -51,7 +51,8 @@ module Locomotive
                 html.css("ul").each do |i|
                   i.remove
                 end
-
+              end
+              
               text_only = sanitize_search_content(html.inner_html)
               text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" ")
             else
@@ -59,6 +60,7 @@ module Locomotive
             end
           end.compact.join(' ').strip
         end
+
         def desc_to_index
           if self.meta_description.nil? or entry.meta_description.empty?
             ActionController::Base.helpers.truncate(sanitize_search_content(self.body), length: 50)
