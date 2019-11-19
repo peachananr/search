@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails',           '>= 5.1.6', '< 6'
   s.add_dependency 'algoliasearch',   '~> 1.19'
-  s.add_dependency 'nokogiri',   '~> 1.8.5'
+  s.add_dependency 'nokogiri'
 end
