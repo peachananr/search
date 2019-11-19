@@ -9,13 +9,13 @@ gemspec
 gem 'passenger',              '~> 5.2.1'
 gem 'mongoid',                '~> 6.4.0'
 gem 'devise',                 '~> 4.4.3'
-gem 'sass-rails',             '~> 5.0'
+gem 'sass-rails'
 gem 'uglifier',               '>= 1.3.0'
-gem 'coffee-rails',           '~> 4.2'
+gem 'coffee-rails'
 gem 'turbolinks',             '~> 5'
 gem 'bootsnap',               '>= 1.1.0', require: false
 gem 'sidekiq',                '~> 5.1.3'
-gem 'nokogiri',               '~> 1.8.5'
+gem 'nokogiri'
 
 gem 'custom_fields', path: '../custom_fields' # for Developers
 gem 'locomotivecms', path: '../engine'
