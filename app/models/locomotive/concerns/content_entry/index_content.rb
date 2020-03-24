@@ -47,6 +47,18 @@ module Locomotive
                   i.remove
                 end
               end
+
+              if html.css(".video-block").size != 0
+                html.css(".video-block").each do |i|
+                  i.remove
+                end
+              end
+              if html.css(".audio-block").size != 0
+                html.css(".audio-block").each do |i|
+                  i.remove
+                end
+              end
+
               if html.css("ul").size != 0
                 html.css("ul").each do |i|
                   i.remove
