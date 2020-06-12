@@ -121,7 +121,7 @@ module Locomotive
             '_slug'         => self._slug,
             '_label'        => self._label,
             'description'   => truncate_desc(sanitize_search_content(self.desc), 200),
-            'thumbnail'     => self.bg_image.url
+            'thumbnail'     => self.clean_image.url
           }
 
           data
