@@ -96,7 +96,8 @@ module Locomotive
             '_label'        => self._label,
             'subtitle'        => self.subtitle,
             'description'   => desc,
-            'thumbnail'     => self.header_img_thumb.url
+            'thumbnail'     => self.header_img_thumb.url,
+            'weight'        => 10
           }
 
           data
@@ -108,7 +109,8 @@ module Locomotive
             '_slug'         => self._slug,
             '_label'        => self._label,
             'description'   => truncate_desc(sanitize_search_content(self.body), 200),
-            'thumbnail'     => self.cover_image_thumb.url
+            'thumbnail'     => self.cover_image_thumb.url,
+            'weight'        => 5
           }
 
           data
@@ -121,7 +123,8 @@ module Locomotive
             '_slug'         => self._slug,
             '_label'        => self._label,
             'description'   => truncate_desc(sanitize_search_content(self.desc), 200),
-            'thumbnail'     => self.clean_image.url
+            'thumbnail'     => self.clean_image.url,
+            'weight'        => 1
           }
 
           data
