@@ -34,7 +34,7 @@ module Locomotive
     def index_important_post(site, entry, locale)
       if entry.content_type.slug == "posts"
         search_backend(entry.site, locale)&.save_object(
-          type:       entry.content_type.slug,
+          type:       "9-#{entry.content_type.slug}",
           object_id:  entry._id.to_s,
           title:      "#{entry.title} #{entry.subtitle}",
           content:    entry.blog_post_to_index,
@@ -44,7 +44,7 @@ module Locomotive
       end
       if entry.content_type.slug == "videos"
         search_backend(entry.site, locale)&.save_object(
-          type:       entry.content_type.slug,
+          type:       "5-#{entry.content_type.slug}",
           object_id:  entry._id.to_s,
           title:      "#{entry.title} Travel Video",
           content:    entry.blog_post_to_index,
@@ -54,7 +54,7 @@ module Locomotive
       end
       if entry.content_type.slug == "destinations"
         search_backend(entry.site, locale)&.save_object(
-          type:       entry.content_type.slug,
+          type:       "1-#{entry.content_type.slug}",
           object_id:  entry._id.to_s,
           title:      "#{entry.name} Travel Guides",
           content:    entry.destinations_to_index,
