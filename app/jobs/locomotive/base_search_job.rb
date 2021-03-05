@@ -39,7 +39,8 @@ module Locomotive
           title:      "#{entry.title} #{entry.subtitle}",
           content:    entry.blog_post_to_index,
           visible:    entry.visible?,
-          data:       entry.blog_post_data_to_index
+          data:       entry.blog_post_data_to_index,
+          weight:     10
         )
       end
       if entry.content_type.slug == "videos"
@@ -49,7 +50,8 @@ module Locomotive
           title:      "#{entry.title} Travel Video",
           content:    entry.blog_post_to_index,
           visible:    entry.visible?,
-          data:       entry.video_data_to_index
+          data:       entry.video_data_to_index,
+          weight:     5
         )
       end
       if entry.content_type.slug == "destinations"
@@ -59,7 +61,8 @@ module Locomotive
           title:      "#{entry.name} Travel Guides",
           content:    entry.destinations_to_index,
           visible:    entry.visible?,
-          data:       entry.destination_data_to_index
+          data:       entry.destination_data_to_index,
+          weight:     1
         )
       end
     end
