@@ -79,6 +79,9 @@ module Locomotive
               end
 
               text_only = sanitize_search_content(content)
+              puts "oooooo #{content}"
+              puts "xxxx #{text_only}"
+              puts "yyyyy #{truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)}"
               truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
               #text_only = sanitize_search_content(html.inner_html)
               #truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
