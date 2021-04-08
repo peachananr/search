@@ -64,7 +64,11 @@ module Locomotive
                   i.remove
                 end
               end
-
+              if html.css(".btn-wrap").size != 0
+                html.css(".btn-wrap").each do |i|
+                  i.remove
+                end
+              end
 
               html.css("h2, h3, h4").each do |i|
                 content << "#{i.text} "
@@ -79,10 +83,8 @@ module Locomotive
               end
 
               text_only = sanitize_search_content(content)
-              puts "oooooo #{content}"
-              puts "xxxx #{text_only}"
-              puts "yyyyy #{truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)}"
-              truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
+              puts "yyyyy #{truncate_desc(text_only.strip.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)}"
+              truncate_desc(text_only.strip.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
               #text_only = sanitize_search_content(html.inner_html)
               #truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
             else
