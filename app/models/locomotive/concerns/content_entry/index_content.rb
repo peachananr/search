@@ -39,6 +39,8 @@ module Locomotive
           self.custom_fields_basic_attributes.map do |(name, value)|
             if name == "body"
               html = Nokogiri.HTML(value)
+              content = ""
+
               if html.css("#table-of-contents").size != 0
                 html.css("#table-of-contents").first.remove
               end
@@ -47,7 +49,6 @@ module Locomotive
                   i.remove
                 end
               end
-
               if html.css(".video-block").size != 0
                 html.css(".video-block").each do |i|
                   i.remove
@@ -58,15 +59,29 @@ module Locomotive
                   i.remove
                 end
               end
-
               if html.css("ul").size != 0
                 html.css("ul").each do |i|
                   i.remove
                 end
               end
 
+
+              html.css("h2, h3, h4").each do |i|
+                content << "#{i.text} "
+              end
+
+              html.css("p").each_with_index do |i, index|
+                if index > 9
+                  break
+                else
+                  content << "#{i.text} "
+                end
+              end
+
               text_only = sanitize_search_content(html.inner_html)
               truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
+              #text_only = sanitize_search_content(html.inner_html)
+              #truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
             else
               next
             end
