@@ -71,20 +71,19 @@ module Locomotive
               end
 
               html.css("h2, h3, h4").each do |i|
-                content << "#{i.text} "
+                content = "#{content} #{i.text} "
               end
 
               html.css("p").each_with_index do |i, index|
                 if index > 9
                   break
                 else
-                  content << "#{i.text} "
+                  content = "#{content} #{i.text} "
                 end
               end
+              
+              truncate_desc( sanitize_search_content(content).downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
 
-              text_only = sanitize_search_content(content)
-              puts "yyyyy #{truncate_desc(text_only.strip.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)}"
-              truncate_desc(text_only.strip.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
               #text_only = sanitize_search_content(html.inner_html)
               #truncate_desc(text_only.downcase.chomp.gsub(/[^0-9A-Za-z ]/, ' ').split(" ").uniq.select{|w| w.length >= 3}.join(" "), 8000)
             else
