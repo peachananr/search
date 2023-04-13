@@ -152,10 +152,10 @@ module Locomotive
           # don't index an unpublished entry or entry that is not posts, destinations, and videos
           return if !self.visible? or (self._type != "Locomotive::ContentEntry5adf77af6eabcc00190b75b6" and self._type !=  "Locomotive::ContentEntry5ae2fcb93e788b000b95ee64" and self._type !=  "Locomotive::ContentEntry5afe6305a6c15b186b7d1943")
 
-          Locomotive::SearchIndexContentEntryJob.perform_later(
-            self._id.to_s,
-            ::Mongoid::Fields::I18n.locale.to_s
-          )
+          #Locomotive::SearchIndexContentEntryJob.perform_later(
+          #  self._id.to_s,
+          #  ::Mongoid::Fields::I18n.locale.to_s
+          #)
         end
 
         def unindex_content
