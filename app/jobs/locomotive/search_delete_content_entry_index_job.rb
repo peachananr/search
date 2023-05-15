@@ -7,7 +7,7 @@ module Locomotive
 
         return if site.nil? # usecase: the site has already been destroyed
 
-        search_backend(site, locale)&.delete_object(
+        search_backend(site, locale)&.delete_object_new(
           content_type_slug,
           entry_id
         )

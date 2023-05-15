@@ -47,7 +47,7 @@ module Locomotive
           index_objects(global_index, [object])
         end
 
-        def delete_object(type, object_id)
+        def delete_object_new(type, object_id)
           delete_object(object_index(type), object_id)
           delete_object(global_index, object_id)
         end
