@@ -7,11 +7,20 @@ module Locomotive
       # first remove all the indices for this site
       search_backend(site, nil)&.clear_all_indices
       ## CUSTOM Index Job for BucketListly Blog Only
-      #if site_id == "5adf778b6eabcc00190b75b1" #dev"5ae3ea9872822817a85b0d64"
-      site.content_types.each do |content_type|
-        if content_type.slug == "posts" or content_type.slug == "videos" or content_type.slug == "destinations"
-          content_type.entries.visible.each do |entry|
-            index_important_post(site, entry, locale)
+      if site_id == "5adf778b6eabcc00190b75b1"
+        site.content_types.each do |content_type|
+          if content_type.slug == "posts" or content_type.slug == "videos" or content_type.slug == "destinations"
+            content_type.entries.visible.each do |entry|
+              index_bucketlistly_post(site, entry, locale)
+            end
+          end
+        end
+      elsif site_id == "5e886aa2f3cd28000d6fd7a7"
+        site.content_types.each do |content_type|
+          if content_type.slug == "posts"
+            content_type.entries.visible.each do |entry|
+              index_mintsmeals_post(site, entry, locale)
+            end
           end
         end
       end

@@ -31,7 +31,7 @@ module Locomotive
       )
     end
     ## CUSTOM Index Job for BucketListly Blog Only
-    def index_important_post(site, entry, locale)
+    def index_bucketlistly_post(site, entry, locale)
       if entry.content_type.slug == "posts"
         search_backend(entry.site, locale)&.save_object(
           type:       "9-#{entry.content_type.slug}",
@@ -60,6 +60,19 @@ module Locomotive
           content:    entry.destinations_to_index,
           visible:    entry.visible?,
           data:       entry.destination_data_to_index
+        )
+      end
+    end
+
+    def index_mintsmeals_post(site, entry, locale)
+      if entry.content_type.slug == "posts"
+        search_backend(entry.site, locale)&.save_object(
+          type:       "9-#{entry.content_type.slug}",
+          object_id:  entry._id.to_s,
+          title:      "#{entry.title}",
+          content:    entry.blog_post_data_to_index,
+          visible:    entry.visible?,
+          data:       entry.recipe_data_to_index
         )
       end
     end

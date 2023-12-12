@@ -120,6 +120,26 @@ module Locomotive
 
           data
         end
+        
+
+        
+        def recipe_data_to_index
+          if self.meta_description.nil? or self.meta_description.empty?
+            desc = truncate_desc(sanitize_search_content(self.body), 200)
+          else
+            desc = self.meta_description
+          end
+
+          data = {
+            '_content_type' => self.content_type.slug,
+            '_slug'         => self._slug,
+            '_label'        => self._label,
+            'description'   => desc,
+            'thumbnail'     => self.header_img_thumb.url
+          }
+
+          data
+        end
 
         def video_data_to_index
           data = {
@@ -149,8 +169,8 @@ module Locomotive
         private
 
         def index_content
-          # don't index an unpublished entry or entry that is not posts, destinations, and videos
-          return if !self.visible? or (self._type != "Locomotive::ContentEntry5adf77af6eabcc00190b75b6" and self._type !=  "Locomotive::ContentEntry5ae2fcb93e788b000b95ee64" and self._type !=  "Locomotive::ContentEntry5afe6305a6c15b186b7d1943")
+          # don't index an unpublished entry or entry that is not posts, destinations, recipes, and videos
+          return if !self.visible? or (self._type != "Locomotive::ContentEntry5adf77af6eabcc00190b75b6" and self._type !=  "Locomotive::ContentEntry5ae2fcb93e788b000b95ee64" and self._type !=  "Locomotive::ContentEntry5afe6305a6c15b186b7d1943" and self._type !=  "Locomotive::ContentEntry639b2d4bb83a54000485828d")
 
           Locomotive::SearchIndexContentEntryJob.perform_later(
             self._id.to_s,
