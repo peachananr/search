@@ -70,7 +70,7 @@ module Locomotive
           type:       "9-#{entry.content_type.slug}",
           object_id:  entry._id.to_s,
           title:      "#{entry.title}",
-          content:    entry.blog_post_data_to_index,
+          content:    entry.blog_post_to_index,
           visible:    entry.visible?,
           data:       entry.recipe_data_to_index
         )
