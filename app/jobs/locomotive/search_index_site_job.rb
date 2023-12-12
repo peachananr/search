@@ -15,7 +15,7 @@ module Locomotive
             end
           end
         end
-      elsif site_id == "5e886aa2f3cd28000d6fd7a7"
+      elsif site_id == "639b26afb83a540004858288"
         site.content_types.each do |content_type|
           if content_type.slug == "posts"
             content_type.entries.visible.each do |entry|
