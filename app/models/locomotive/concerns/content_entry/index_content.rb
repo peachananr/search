@@ -135,6 +135,7 @@ module Locomotive
             '_slug'         => self._slug,
             '_label'        => self._label,
             'description'   => desc,
+            'tags'   => self.tags,
             'thumbnail'     => self.header_img_thumb.url
           }
 
