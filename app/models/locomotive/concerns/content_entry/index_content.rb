@@ -115,7 +115,8 @@ module Locomotive
             '_label'        => self._label,
             'subtitle'        => self.subtitle,
             'description'   => desc,
-            'thumbnail'     => self.header_img_thumb.url
+            'thumbnail'     => self.header_img_thumb.url,
+            'published_date'   => self.date,
           }
 
           data
