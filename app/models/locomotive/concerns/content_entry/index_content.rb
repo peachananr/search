@@ -108,6 +108,23 @@ module Locomotive
           else
             desc = self.meta_description
           end
+          weight = 1
+
+          if self._label.downcase.include? "things to do"
+            weight = 9
+          elsif self._label.downcase.include? "itinerary"
+            weight = 10
+          elsif self._label.downcase.include? "places to visit"
+            weight = 8
+          elsif self._label.downcase.include? "travel guide"
+            weight = 7
+          elsif self._label.downcase.include? "hiking guide"
+            weight = 6
+          elsif self._label.downcase.include? "complete guide"
+            weight = 7
+          elsif self._label.downcase.include? "ultimate guide"
+            weight = 7
+          end
 
           data = {
             '_content_type' => self.content_type.slug,
@@ -117,6 +134,7 @@ module Locomotive
             'description'   => desc,
             'thumbnail'     => self.header_img_thumb.url,
             'published_date'   => self.date,
+            'name_weight' => weight
           }
 
           data
